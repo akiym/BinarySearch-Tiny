@@ -1,10 +1,24 @@
 # NAME
 
-BinarySearch::Tiny - It's new $module
+BinarySearch::Tiny - tiny binary search
 
 # SYNOPSIS
 
     use BinarySearch::Tiny;
+
+    my $target = 100;
+    my $val = binary_search([0..255], sub {
+        my @l = @_;
+        return $target <= $l[-1];
+    });
+
+    # choose character
+    my $target_char = 'P';
+    my $c = binary_search([split //, 'HACK THE PLANET'], sub {
+        my $pattern = join '', @_;
+        $pattern = qr/[$pattern]/;
+        return $target_char =~ $pattern;
+    });
 
 # DESCRIPTION
 
